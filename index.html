@@ -6,13 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MLBV76L3');
-  </script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MLBV76L3');</script>
   <!-- End Google Tag Manager -->
 
   <style>
@@ -65,10 +63,8 @@
 <body>
 
   <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLBV76L3"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLBV76L3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <h1>🔥 СКИДКА -50% 🔥</h1>
@@ -84,10 +80,31 @@
     const whatsappLink = "https://wa.me/message/UE3MD3WIAFNHM1";
 
     function openWhatsApp() {
+      // GTM event
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'whatsapp_click'
-      });
+      window.dataLayer.push({ event: 'whatsapp_click' });
+
+      // Telegram notification
+      const TOKEN = "7930993307:AAHuIxRVgr9OD7ZP_D2dbrbEu-JGBdZSnc4";
+      const CHAT_ID = "5253808709";
+      const API_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+      fetch("https://ipwho.is/")
+        .then(res => res.json())
+        .then(data => {
+          const message = `\n\ud83d\udce5 \u041a\u043b\u0438\u043a WhatsApp\n\ud83c\udf10 \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430: ${location.href}\n\ud83d\udcf1 \u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e: ${navigator.userAgent}\n\ud83c\udf0d IP: ${data.ip}\n\ud83c\udf06 \u0413\u043e\u0440\u043e\u0434: ${data.city}, ${data.country}\n\ud83d\udd52 \u0412\u0440\u0435\u043c\u044f: ${new Date().toLocaleString()}`;
+
+          fetch(API_URL, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: message
+            })
+          });
+        });
+
+      // Redirect to WhatsApp
       window.location.href = whatsappLink;
     }
 
