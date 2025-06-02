@@ -80,11 +80,9 @@
     const whatsappLink = "https://wa.me/message/UE3MD3WIAFNHM1";
 
     function openWhatsApp() {
-      // GTM event
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'whatsapp_click' });
 
-      // Telegram notification
       const TOKEN = "7930993307:AAHuIxRVgr9OD7ZP_D2dbrbEu-JGBdZSnc4";
       const CHAT_ID = "5253808709";
       const API_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
@@ -92,19 +90,15 @@
       fetch("https://ipwho.is/")
         .then(res => res.json())
         .then(data => {
-          const message = `\n\ud83d\udce5 \u041a\u043b\u0438\u043a WhatsApp\n\ud83c\udf10 \u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430: ${location.href}\n\ud83d\udcf1 \u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e: ${navigator.userAgent}\n\ud83c\udf0d IP: ${data.ip}\n\ud83c\udf06 \u0413\u043e\u0440\u043e\u0434: ${data.city}, ${data.country}\n\ud83d\udd52 \u0412\u0440\u0435\u043c\u044f: ${new Date().toLocaleString()}`;
+          const message = `\n📥 Клик WhatsApp\n🌐 Страница: ${location.href}\n📱 Устройство: ${navigator.userAgent}\n🌍 IP: ${data.ip}\n🌆 Город: ${data.city}, ${data.country}\n🕒 Время: ${new Date().toLocaleString()}`;
 
           fetch(API_URL, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: CHAT_ID,
-              text: message
-            })
+            body: JSON.stringify({ chat_id: CHAT_ID, text: message })
           });
         });
 
-      // Redirect to WhatsApp
       window.location.href = whatsappLink;
     }
 
@@ -131,6 +125,23 @@
       const twelveHours = 12 * 60 * 60;
       const display = document.getElementById('timer');
       startTimer(twelveHours, display);
+
+      // Telegram visit tracking
+      const TOKEN = "7930993307:AAHuIxRVgr9OD7ZP_D2dbrbEu-JGBdZSnc4";
+      const CHAT_ID = "5253808709";
+      const API_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+      fetch("https://ipwho.is/")
+        .then(res => res.json())
+        .then(data => {
+          const message = `\n\u{1F4C4} Зашли на страницу\n\u{1F310} Страница: ${location.href}\n\u{1F4F1} Устройство: ${navigator.userAgent}\n\u{1F30D} IP: ${data.ip}\n\u{1F306} Город: ${data.city}, ${data.country}\n\u{1F552} Время: ${new Date().toLocaleString()}`;
+
+          fetch(API_URL, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text: message })
+          });
+        });
     };
   </script>
 
