@@ -6,11 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MLBV76L3');</script>
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MLBV76L3');
+  </script>
   <!-- End Google Tag Manager -->
 
   <style>
@@ -63,8 +65,10 @@
 <body>
 
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLBV76L3"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MLBV76L3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <h1>🔥 СКИДКА -50% 🔥</h1>
@@ -80,6 +84,10 @@
     const whatsappLink = "https://wa.me/message/UE3MD3WIAFNHM1";
 
     function openWhatsApp() {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'whatsapp_click'
+      });
       window.location.href = whatsappLink;
     }
 
@@ -107,35 +115,6 @@
       const display = document.getElementById('timer');
       startTimer(twelveHours, display);
     };
-  </script>
-
-  <!-- Telegram Tracking -->
-  <script>
-    const TOKEN = "7930993307:AAHuIxRVgr9OD7ZP_D2dbrbEu-JGBdZSnc4";
-    const CHAT_ID = "5253808709";
-    const API_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
-
-    fetch("https://ipwho.is/")
-      .then(res => res.json())
-      .then(data => {
-        const message = `
-📥 Новый переход
-🌐 Страница: ${location.href}
-📱 Устройство: ${navigator.userAgent}
-🌍 IP: ${data.ip}
-🌆 Город: ${data.city}, ${data.country}
-🕒 Время: ${new Date().toLocaleString()}
-        `;
-
-        fetch(API_URL, {
-          method: "POST",
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-          })
-        });
-      });
   </script>
 
 </body>
